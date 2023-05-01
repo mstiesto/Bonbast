@@ -27,6 +27,7 @@ jobs:
           host: ${{ secrets.REMOTE_ADDRESS }}
           username: ${{ secrets.REMOTE_USERNAME }}
           key: ${{ secrets.REMOTE_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
           port: ${{ secrets.REMOTE_PORT }}
           script: |
             cd /root/bonbast/
