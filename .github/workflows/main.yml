@@ -27,4 +27,5 @@ jobs:
           ssh_host: ${{ secrets.REMOTE_ADDRESS }}
           ssh_user: ${{ secrets.REMOTE_USERNAME }}
           ssh_private_key: ${{ secrets.REMOTE_PRIVATE_KEY }}
+          ssh_host_public_key: ${{ secrets.REMOTE_PUBLIC_KEY }}
           docker_compose_prefix: bonbast
