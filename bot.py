@@ -1,6 +1,5 @@
-import os, telebot, requests
+import os, telebot, requests, dryscrape
 from bs4 import BeautifulSoup
-from selenium import webdriver
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 BOT = telebot.TeleBot(BOT_TOKEN)
@@ -8,8 +7,10 @@ BOT = telebot.TeleBot(BOT_TOKEN)
 @BOT.message_handler(commands=['start', 'hello'])
 def send_price(message):
     url     = 'https://bonbast.com/'
-    driver  = webdriver.PhantomJS()
-    driver.get(url)
-    euro = driver.find_element_by_id(id_='euro1')
+    session = dryscrape.Session()
+    session.visit(url)
+    response = session.body()
+    soup = BeautifulSoup(response)
+    euro = soup.find(id="euro1")
     BOT.reply_to(message, euro)
 BOT.infinity_polling()
