@@ -31,4 +31,4 @@ jobs:
           port: ${{ secrets.REMOTE_PORT }}
           script: |
             cd /srv/bonbast/
-            sudo docker compose restart bonbast
+            sudo /usr/bin/docker compose restart bonbast
