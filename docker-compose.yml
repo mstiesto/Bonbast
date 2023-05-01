@@ -2,8 +2,6 @@ version: '3.0'
 services:
   bonbast:
     image: mstiesto/bonbast:latest
+    pull_policy: always
     restart: always
-    container_name: v2ray
-    privileged: true
-    volumes:
-      - "./v2ray:/etc/v2ray"
+    container_name: bonbast

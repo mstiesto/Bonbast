@@ -21,11 +21,13 @@ jobs:
           push: true
           tags: mstiesto/bonbast:latest
 
-      - name: Docker Compose Remote Deployment
-        uses: astappiev/docker-compose-remote-action@master
+      - name: Deploy Stack
+        uses: appleboy/ssh-action@master
         with:
-          ssh_host: ${{ secrets.REMOTE_ADDRESS }}
-          ssh_user: ${{ secrets.REMOTE_USERNAME }}
-          ssh_private_key: ${{ secrets.REMOTE_PRIVATE_KEY }}
-          ssh_host_public_key: ${{ secrets.REMOTE_PUBLIC_KEY }}
-          docker_compose_prefix: bonbast
+          host: ${{ secrets.REMOTE_ADDRESS }}
+          username: ${{ secrets.REMOTE_USERNAME }}
+          key: ${{ secrets.REMOTE_PRIVATE_KEY }}
+          port: ${{ secrets.REMOTE_PORT }}
+          script: |
+            cd /root/bonbast/
+            docker compose restart bonbast
