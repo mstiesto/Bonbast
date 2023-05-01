@@ -26,9 +26,8 @@ jobs:
         with:
           host: ${{ secrets.REMOTE_ADDRESS }}
           username: ${{ secrets.REMOTE_USERNAME }}
-          key: ${{ secrets.REMOTE_PRIVATE_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+          password: ${{ secrets.REMOTE_PASSWORD }}
           port: ${{ secrets.REMOTE_PORT }}
           script: |
             cd /srv/bonbast/
-            sudo /usr/bin/docker compose restart bonbast
+            docker compose restart bonbast
