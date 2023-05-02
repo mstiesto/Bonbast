@@ -2,6 +2,6 @@ version: '3.0'
 services:
   bonbast:
     image: mstiesto/bonbast:latest
-    pull_policy: always
     restart: always
+    pull_policy: always
     container_name: bonbast
