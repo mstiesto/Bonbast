@@ -1,4 +1,4 @@
-FROM python:3.10.10-alpine
+FROM playwrightsteam/playwrights-web
 WORKDIR /app
 ARG BOT_TOKEN
 ENV BOT_TOKEN=$BOT_TOKEN
