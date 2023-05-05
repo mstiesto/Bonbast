@@ -12,7 +12,7 @@ def send_price(message):
     url = 'https://bonbast.com/'
     options = Options()
     options.add_argument("--headless")
-    browser= webdriver.Chrome(options=options, executable_path="/usr/bin/chromium")
+    browser= webdriver.Chrome(options=options, executable_path="/usr/bin/google-chrome")
     browser.get(url);
     soup = BeautifulSoup(response, features="lxml")
     if message.text == "/euro":
