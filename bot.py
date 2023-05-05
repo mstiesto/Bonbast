@@ -1,7 +1,14 @@
-import os, telebot
+import os, telebot, chromedriver_install
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+
+
+# Install ChromeDriver
+path = cdi.install(file_directory='/usr/bin', verbose=True, chmod=True, overwrite=False, version=None)
+print('Installed chromedriver to path: %s' % path) 
+
+
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 BOT = telebot.TeleBot(BOT_TOKEN)
@@ -10,10 +17,10 @@ BOT = telebot.TeleBot(BOT_TOKEN)
 
 def send_price(message):
     url = 'https://bonbast.com/'
-    options = Options()
-    options.add_argument("--headless")
-    browser= webdriver.Chrome(options=options)
-    browser.get(url)
+    # options = Options()
+    # options.add_argument("--headless")
+    driver = webdriver.Chrome("/usr/bin/chromedriver")
+    driver.get(url)
     soup = BeautifulSoup(response, features="lxml")
     if message.text == "/euro":
         currency = soup.find(id="eur1")
@@ -22,5 +29,5 @@ def send_price(message):
     else:
         BOT.reply_to(message, "Could not find the currency")
     BOT.reply_to(message, currency)
-    browser.quit()
+    driver.quit()
 BOT.infinity_polling()
