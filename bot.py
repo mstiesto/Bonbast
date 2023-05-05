@@ -8,11 +8,20 @@ BOT = telebot.TeleBot(BOT_TOKEN)
 
 
 @BOT.message_handler(commands=['euro', 'dollar'])
+
+
+sess = dryscrape.Session(driver=driver)
+
+
+
 def send_price(message):
     url = 'https://bonbast.com/'
     server = webkit_server.Server()
-    dryscrape.start_xvfb()
-    session = dryscrape.Session()
+    server_conn = webkit_server.ServerConnection(server=server)
+    driver = dryscrape.driver.webkit.Driver(connection=server_conn)
+
+#    dryscrape.start_xvfb()
+    session = dryscrape.Session(driver=driver)
     session.set_header('user-agent', 'Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2225.0 Safari/537.36')
     session.set_attribute('auto_load_images', False)
     session.set_timeout(30)
