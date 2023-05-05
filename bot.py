@@ -9,11 +9,6 @@ BOT = telebot.TeleBot(BOT_TOKEN)
 
 @BOT.message_handler(commands=['euro', 'dollar'])
 
-
-sess = dryscrape.Session(driver=driver)
-
-
-
 def send_price(message):
     url = 'https://bonbast.com/'
     server = webkit_server.Server()
