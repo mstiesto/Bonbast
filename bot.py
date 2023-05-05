@@ -7,6 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 BOT = telebot.TeleBot(BOT_TOKEN)
+driver = webdriver.Chrome(ChromeDriverManager().install())
 
 @BOT.message_handler(commands=['euro', 'dollar'])
 
@@ -14,7 +15,6 @@ def send_price(message):
     url = 'https://bonbast.com/'
     # options = Options()
     # options.add_argument("--headless")
-    driver = webdriver.Chrome(ChromeDriverManager().install())
     driver.get(url)
     soup = BeautifulSoup(response, features="lxml")
     if message.text == "/euro":
