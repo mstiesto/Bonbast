@@ -1,4 +1,4 @@
-FROM dclong/python
+FROM python:3.10.10
 ARG BOT_TOKEN
 ENV BOT_TOKEN=$BOT_TOKEN
 WORKDIR /app
