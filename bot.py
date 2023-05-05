@@ -8,6 +8,7 @@ BOT = telebot.TeleBot(BOT_TOKEN)
 @BOT.message_handler(commands=['euro', 'dollar'])
 def send_price(message):
     url = 'https://bonbast.com/'
+    server = webkit_server.Server()
     dryscrape.start_xvfb()
     session = dryscrape.Session()
     session.set_header('user-agent', 'Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2225.0 Safari/537.36')
@@ -16,6 +17,7 @@ def send_price(message):
     session.visit(url)
     response = session.body()
     session.reset()
+    server.kill()
     soup = BeautifulSoup(response, features="lxml")
     if message.text == "/euro":
         currency = soup.find(id="eur1")
