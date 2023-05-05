@@ -14,7 +14,7 @@ def send_price(message):
     url = 'https://bonbast.com/'
     options = Options()
     options.add_argument("--headless")
-    browser= webdriver.Firefox(firefox_options=options, executable_path="/usr")
+    browser= webdriver.Firefox(firefox_options=options, executable_path="/usr/bin/firefox")
     browser.get(url);
     soup = BeautifulSoup(response, features="lxml")
     if message.text == "/euro":
