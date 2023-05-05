@@ -1,4 +1,4 @@
-import os, telebot, 
+import os, telebot
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
