@@ -4,7 +4,10 @@ ENV BOT_TOKEN=$BOT_TOKEN
 WORKDIR /app
 RUN apt-get update -y \
     && apt-get install -y \
-    wget xvfb unzip chromium-browser \
+    wget xvfb unzip chromium-browser libglib2.0-0 \
+    libnss3 \
+    libgconf-2-4 \
+    libfontconfig1 \
     && apt-get autoremove \
     && apt-get autoclean
 ENV CHROMEDRIVER_VERSION 2.19
