@@ -1,11 +1,11 @@
-import os, telebot, chromedriver-install
+import os, telebot, chromedriver_install
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 
 # Install ChromeDriver
-path = cdi.install(file_directory='/usr/bin', verbose=True, chmod=True, overwrite=False, version=None)
+path = chromedriver_install.install(file_directory='/usr/bin', verbose=True, chmod=True, overwrite=False, version=None)
 print('Installed chromedriver to path: %s' % path) 
 
 
