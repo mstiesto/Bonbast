@@ -1,12 +1,10 @@
 import os, telebot
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
-
+from selenium.webdriver.chrome.options import Options
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 BOT = telebot.TeleBot(BOT_TOKEN)
-
 
 @BOT.message_handler(commands=['euro', 'dollar'])
 
@@ -14,7 +12,7 @@ def send_price(message):
     url = 'https://bonbast.com/'
     options = Options()
     options.add_argument("--headless")
-    browser= webdriver.Firefox(options=options, executable_path="/usr/bin/firefox")
+    browser= webdriver.Chrome(options=options, executable_path="/usr/bin/chromium")
     browser.get(url);
     soup = BeautifulSoup(response, features="lxml")
     if message.text == "/euro":

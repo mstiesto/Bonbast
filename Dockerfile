@@ -4,7 +4,7 @@ ENV BOT_TOKEN=$BOT_TOKEN
 WORKDIR /app
 RUN apt-get update -y \
     && apt-get install -y \
-        firefox \
+        chromium \
     && apt-get autoremove \
     && apt-get autoclean 
 COPY bot.py requirements.txt .
