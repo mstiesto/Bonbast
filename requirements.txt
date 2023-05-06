@@ -4,4 +4,3 @@ pyTelegramBotAPI==4.11.0
 selenium
 webdriver_manager
 pymemcache
-time
