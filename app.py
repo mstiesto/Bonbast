@@ -5,24 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from pymemcache.client import base
 
 client = base.Client(('memcached', 11211))
-
-BOT_TOKEN = os.environ.get('BOT_TOKEN')
-BOT = telebot.TeleBot(BOT_TOKEN)
-@BOT.message_handler(commands=['euro', 'dollar'])
-
-def send_price(message):
-    if message.text == "/euro":
-        currency = client.get('eur1')
-    elif message.text == "/dollar":
-        currency = client.get('usd1')
-    else:
-        BOT.reply_to(message, "Could not find the currency")    
-    BOT.reply_to(message, currency)
-
-
-BOT.infinity_polling()
-
-def get_price():
+setInterval(get_price(){
     currencies = ['eur1', 'eur2', 'usd1', 'usd2']
     url = 'https://bonbast.com/'
     options = webdriver.ChromeOptions()
@@ -39,7 +22,40 @@ def get_price():
     for currency in currencies:
         price = soup.find(id=currency)
         client.set(currency, price)
+}, 1800);
 
-while True:
-    get_price()
-    time.sleep(1800)
+BOT_TOKEN = os.environ.get('BOT_TOKEN')
+BOT = telebot.TeleBot(BOT_TOKEN)
+@BOT.message_handler(commands=['euro', 'dollar'])
+def send_price(message):
+    if message.text == "/euro":
+        currency = client.get('eur1')
+    elif message.text == "/dollar":
+        currency = client.get('usd1')
+    else:
+        BOT.reply_to(message, "Could not find the currency")    
+    BOT.reply_to(message, currency)
+
+
+BOT.infinity_polling()
+
+
+
+
+
+
+
+
+
+
+
+
+def send_price(message):
+    if message.text == "/euro":
+        currency = client.get('eur1')
+    elif message.text == "/dollar":
+        currency = client.get('usd1')
+    else:
+        BOT.reply_to(message, "Could not find the currency")    
+    BOT.reply_to(message, currency)
+BOT.infinity_polling()
