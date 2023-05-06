@@ -11,7 +11,7 @@ BOT = telebot.TeleBot(BOT_TOKEN)
 def send_price(message):
     url = 'https://bonbast.com/'
     options = webdriver.ChromeOptions()
-    options.headless = True
+    options.add_argument('--headless=new')
     options.add_argument("window-size=1920x1080")
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-gpu')
@@ -20,7 +20,7 @@ def send_price(message):
     driver.get(url)
     time.sleep(5)
     src = driver.page_source
-    soup = BeautifulSoup(src, features="lxml")
+    soup = BeautifulSoup(src)
     if message.text == "/euro":
         currency = soup.find(id="eur1")
     elif message.text == "/dollar":
