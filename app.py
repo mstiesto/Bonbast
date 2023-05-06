@@ -1,7 +1,6 @@
 import os, telebot, time
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from pymemcache.client import base
 
 client = base.Client(('memcached', 11211))
