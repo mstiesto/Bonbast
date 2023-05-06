@@ -30,6 +30,7 @@ options.add_argument('--disable-gpu')
 driver = webdriver.Chrome(options=options)
 
 while True:
+    print("Geting price list")
     driver.get(url)
     time.sleep(5)
     driver.close()
