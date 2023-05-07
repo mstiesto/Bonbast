@@ -22,6 +22,7 @@ while True:
     soup = BeautifulSoup(src, 'html.parser')
     for currency in currencies:
         price = soup.find(id=currency)
-        client.set(currency, price.prettify())
+        print(time, "price for", currency, "is: ", price.get_text())
+        client.set(currency, price.get_text())
     driver.close()
     time.sleep(1800)
