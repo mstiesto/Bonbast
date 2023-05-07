@@ -18,10 +18,10 @@ while True:
     print("Geting price list ...")
     driver.get(url)
     time.sleep(5)
-    driver.close()
     src = driver.page_source
     soup = BeautifulSoup(src)
     for currency in currencies:
         price = soup.find(id=currency)
         client.set(currency, price)
+    driver.close()
     time.sleep(1800)
