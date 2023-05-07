@@ -25,5 +25,5 @@ WORKDIR /app
 COPY ./requirements.txt /app/requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
 COPY . .
-EXPOSE 8080
-CMD python app.py
+RUN chmod +x run.sh
+CMD ["./run.sh"]
