@@ -19,9 +19,9 @@ while True:
     driver.get(url)
     time.sleep(5)
     src = driver.page_source
-    soup = BeautifulSoup(src)
+    soup = BeautifulSoup(src, 'html.parser')
     for currency in currencies:
         price = soup.find(id=currency)
-        client.set(currency, price)
+        client.set(currency, price.prettify())
     driver.close()
     time.sleep(1800)
