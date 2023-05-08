@@ -12,7 +12,9 @@ while True:
     options.add_argument("window-size=1920x1080")
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-gpu')
+    options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0")
     driver = webdriver.Chrome(options=options)
+    driver.set_page_load_timeout(30)
     driver.get(url)
     time.sleep(5)
     src = driver.page_source
