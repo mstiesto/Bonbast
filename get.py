@@ -8,8 +8,8 @@ while True:
     print("Geting price list ...")
     url = 'https://bonbast.com/'
     options = webdriver.ChromeOptions()
-    options.add_argument('--headless=new')
-    options.add_argument("window-size=1920x1080")
+    # options.add_argument('--headless=new')
+    options.add_argument("window-size=1024x768")
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-gpu')
     options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0")
