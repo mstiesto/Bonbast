@@ -6,7 +6,7 @@ client = base.Client(('memcached', 11211))
 currencies = ['eur1', 'eur2', 'usd1', 'usd2']
 while True:
     print("Geting price list ...")
-    url = 'https://bonbast.com/'
+    url = 'https://bonbast.com'
     options = webdriver.ChromeOptions()
     # options.add_argument('--headless=new')
     options.add_argument("window-size=1024x768")
@@ -21,7 +21,7 @@ while True:
     soup = BeautifulSoup(src, 'html.parser')
     for currency in currencies:
         price = soup.find(id=currency)
-        print(time, "price for", currency, "is: ", price.get_text())
+        print(time.time, "price for", currency, "is: ", price.get_text())
         client.set(currency, price.get_text())
     driver.quit()
     time.sleep(1800)
