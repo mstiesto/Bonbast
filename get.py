@@ -9,6 +9,7 @@ while True:
     url = 'https://bonbast.com'
     options = webdriver.ChromeOptions()
     options.add_argument('--headless=new')
+    chrome_options.add_argument('--disable-dev-shm-usage')
     # options.add_argument("window-size=1024x768")
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-gpu')
@@ -21,7 +22,7 @@ while True:
     soup = BeautifulSoup(src, 'html.parser')
     for currency in currencies:
         price = soup.find(id=currency)
-        print(time.time, "price for", currency, "is: ", price.get_text())
+        print("price for", currency, "is: ", price.get_text())
         client.set(currency, price.get_text())
     driver.quit()
-    time.sleep(1800)
+    time.sleep(300)
