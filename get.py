@@ -6,13 +6,13 @@ client = base.Client(('memcached', 11211))
 #currencies = ['eur1', 'eur2'", 'usd1', 'usd2']
 
 currencies = {
-    "euro" : {
-        "buy" : "eur2",
+    'euro' : {
         "sale" : "eur1" 
+        "buy" : "eur2",
     },
-    "dollar" : {
-        "buy" : "usd2",
+    'dollar' : {
         "sale" : "usd1"
+        "buy" : "usd2",
     }
 }
 
@@ -20,7 +20,7 @@ while True:
     print("Geting price list ...")
     url = 'https://bonbast.com'
     options = webdriver.ChromeOptions()
-    options.add_argument('--headless=new')
+    options.add_argument('--headldollaress=new')
     options.add_argument('--disable-dev-shm-usage')
     # options.add_argument("window-size=1024x768")
     options.add_argument('--no-sandbox')
@@ -32,11 +32,11 @@ while True:
     time.sleep(5)
     src = driver.page_source
     soup = BeautifulSoup(src, 'html.parser')
-    for currency in currencies:
+    for currency, price in currencies:
         print("Getting price for", currency,"...")
-        for k, v in currency.items():
-            price = soup.find(id=v)
-            print("price for", currency, k, "is: ", price.get_text())
-            client.set(v, price.get_text())
+        for id in price.values():
+            price = soup.find(id=id)
+            print("price for", currency, id, "is: ", price.get_text())
+            client.set(id, price.get_text())
     driver.quit()
     time.sleep(300)
