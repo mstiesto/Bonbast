@@ -7,12 +7,12 @@ client = base.Client(('memcached', 11211))
 
 currencies = {
     'euro' : {
-        "sale" : "eur1" 
-        "buy" : "eur2",
+        "sale" : "eur1", 
+        "buy" : "eur2"
     },
     'dollar' : {
-        "sale" : "usd1"
-        "buy" : "usd2",
+        "sale" : "usd1",
+        "buy" : "usd2"
     }
 }
 
