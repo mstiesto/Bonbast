@@ -41,13 +41,13 @@ def fetchData():
     driver.get(url)
     time.sleep(5)
     src = driver.page_source
+    global soup
     soup = BeautifulSoup(src, 'html.parser')
     driver.quit()
     return soup
 
 def iteratePrice(Currency):
     print("Getting data for", Currency)
-    soup = fetchData()
     sellPrice = soup.find(id=Currency.sellID)
     buyPrice = soup.find(id=Currency.buyID)
     return buyPrice, sellPrice
