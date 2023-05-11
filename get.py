@@ -3,7 +3,19 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from pymemcache.client import base
 client = base.Client(('memcached', 11211))
-currencies = ['eur1', 'eur2', 'usd1', 'usd2']
+#currencies = ['eur1', 'eur2'", 'usd1', 'usd2']
+
+currencies = {
+    "euro" : {
+        "buy" : "eur2",
+        "sale" : "eur1" 
+    },
+    "dollar" : {
+        "buy" : "usd2",
+        "sale" : "usd1"
+    }
+}
+
 while True:
     print("Geting price list ...")
     url = 'https://bonbast.com'
@@ -20,9 +32,11 @@ while True:
     time.sleep(5)
     src = driver.page_source
     soup = BeautifulSoup(src, 'html.parser')
-    for currency in currencies:
-        price = soup.find(id=currency)
-        print("price for", currency, "is: ", price.get_text())
-        client.set(currency, price.get_text())
+    for currency in currencies.keys():
+        print("Getting price for", currency ...)
+        for k, v in currency.items():
+            price = soup.find(id=v)
+            print("price for", currency, k, "is: ", price.get_text())
+            client.set(v, price.get_text())
     driver.quit()
     time.sleep(300)
