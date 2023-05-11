@@ -6,11 +6,11 @@ client = base.Client(('memcached', 11211))
 #currencies = ['eur1', 'eur2'", 'usd1', 'usd2']
 
 currencies = {
-    euro = {
+    "euro" : {
         "buy" : "eur2",
         "sale" : "eur1" 
     },
-    dollar = {
+    "dollar" : {
         "buy" : "usd2",
         "sale" : "usd1"
     }
@@ -32,7 +32,7 @@ while True:
     time.sleep(5)
     src = driver.page_source
     soup = BeautifulSoup(src, 'html.parser')
-    for currency in currencies.keys():
+    for currency in currencies:
         print("Getting price for", currency, "...")
         for k, v in currency.items():
             price = soup.find(id=v)
