@@ -32,11 +32,11 @@ while True:
     time.sleep(5)
     src = driver.page_source
     soup = BeautifulSoup(src, 'html.parser')
+    driver.quit()
     for currency, price in currencies:
         print("Getting price for", currency,"...")
         for id in price.values():
             price = soup.find(id=id)
             print("price for", currency, id, "is: ", price.get_text())
             client.set(id, price.get_text())
-    driver.quit()
     time.sleep(300)
