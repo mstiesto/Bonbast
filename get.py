@@ -33,7 +33,7 @@ while True:
     src = driver.page_source
     soup = BeautifulSoup(src, 'html.parser')
     for currency in currencies.keys():
-        print("Getting price for", currency ...)
+        print("Getting price for", currency, "...")
         for k, v in currency.items():
             price = soup.find(id=v)
             print("price for", currency, k, "is: ", price.get_text())
