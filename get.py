@@ -3,20 +3,30 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from pymemcache.client import base
 client = base.Client(('memcached', 11211))
-#currencies = ['eur1', 'eur2'", 'usd1', 'usd2']
 
-currencies = {
+#currencies = ["euro", "dollar"]
+
+Currencies = {
     "euro" : {
-        "sale" : "eur1", 
-        "buy" : "eur2"
+        "name" : "euro",
+        "buyID" : "eur2",
+        "sellID" : "eur1"
     },
     "dollar" : {
-        "sale" : "usd1",
-        "buy" : "usd2"
+        "name" : "dollar",
+        "buyID" : "usd2",
+        "sellID" : "usd1"
     }
 }
 
-while True:
+class Currency:
+    name=""
+    buyID=""
+    sellID=""
+    def setPrice(slef, id, price):
+        client.set(id, price.get_text())
+
+def fetchData():
     print("Geting price list ...")
     url = 'https://bonbast.com'
     options = webdriver.ChromeOptions()
@@ -33,10 +43,20 @@ while True:
     src = driver.page_source
     soup = BeautifulSoup(src, 'html.parser')
     driver.quit()
-    for currency, price in currencies:
-        print("Getting price for", currency,"...")
-        for id in price.values():
-            price = soup.find(id=id)
-            print("price for", currency, id, "is: ", price.get_text())
-            client.set(id, price.get_text())
+    return soup
+
+def iteratePrice(Currency):
+    print("Getting data for", Currency)
+    soup = fetchData()
+    sellPrice = soup.find(id=Currency.sellID)
+    buyPrice = soup.find(id=Currency.buyID)
+    return buyPrice, sellPrice
+
+
+while True:
+    for Currency in Currencies:
+        print("Set price for", Currency,"...")
+        buyPrice, sellPrice = iteratePrice(Currency)
+        Currency.setPrice(Currency.buyID, buyPrice)
+        Currency.setPrice(Currency.sellID, sellPrice)
     time.sleep(300)
