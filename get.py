@@ -30,7 +30,7 @@ def fetchData():
     print("Geting price list ...")
     url = 'https://bonbast.com'
     options = webdriver.ChromeOptions()
-    options.add_argument('--headldollaress=new')
+    options.add_argument('--headless=new')
     options.add_argument('--disable-dev-shm-usage')
     # options.add_argument("window-size=1024x768")
     options.add_argument('--no-sandbox')
