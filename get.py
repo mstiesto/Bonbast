@@ -6,11 +6,11 @@ client = base.Client(('memcached', 11211))
 #currencies = ['eur1', 'eur2'", 'usd1', 'usd2']
 
 currencies = {
-    'euro' : {
+    "euro" : {
         "sale" : "eur1", 
         "buy" : "eur2"
     },
-    'dollar' : {
+    "dollar" : {
         "sale" : "usd1",
         "buy" : "usd2"
     }
