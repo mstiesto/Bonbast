@@ -55,4 +55,4 @@ while True:
         buyPrice, sellPrice = iteratePrice(soup, name, sellID, buyID)
         setPrice(name ,buyID, buyPrice)
         setPrice(name, sellID, sellPrice)
-    time.sleep(300)
+    time.sleep(1800)
