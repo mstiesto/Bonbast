@@ -6,7 +6,7 @@ currencies = ['eur1', 'eur2', 'usd1', 'usd2']
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 BOT = telebot.TeleBot(BOT_TOKEN)
-@BOT.message_handler(commands=list(currencies.keys()))
+@BOT.message_handler(commands=["euro", "dollar"])
 def send_price(message):
     if message.text == "/euro":
         sell = client.get('eur1')
