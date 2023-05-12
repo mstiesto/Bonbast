@@ -5,6 +5,7 @@ from pymemcache.client import base
 client = base.Client(('memcached', 11211))
 
 #currencies = ["euro", "dollar"]
+
 currencies = {
     "euro" : {
         "name" : "euro",
@@ -17,7 +18,6 @@ currencies = {
         "sellID" : "usd1"
     }
 }
-
 class Currency:
     name=""
     buyID=""
@@ -49,8 +49,8 @@ class Currency:
     def setPrice(id, price):
         client.set(id, price.get_text())
 
-
 while True:
+    Currency.fetchData()
     for currency in currencies.values():
         Currency.name = currency["name"]
         Currency.sellID = currency["sellID"]
