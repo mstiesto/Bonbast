@@ -13,7 +13,7 @@ class Currency:
     def setPrice(slef, id, price):
         client.set(id, price.get_text())
 
-Currencies = {
+currencies = {
     "euro" : {
         "name" : "euro",
         "buyID" : "eur2",
@@ -54,10 +54,10 @@ def iteratePrice(Currency):
 
 
 while True:
-    for k, v in Currencies:
-        Currency.name = v["name"]
-        Currency.sellID = v["sellID"]
-        Currency.buyID = v["buyID"]
+    for currency in currencies:
+        Currency.name = currency["name"]
+        Currency.sellID = currency["sellID"]
+        Currency.buyID = currency["buyID"]
         print("Set price for", Currency.name,"...")
         buyPrice, sellPrice = iteratePrice(Currency)
         Currency.setPrice(Currency.buyID, buyPrice)
