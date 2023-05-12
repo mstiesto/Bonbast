@@ -18,45 +18,40 @@ currencies = {
         "sellID" : "usd1"
     }
 }
-class Currency:
-    name=""
-    buyID=""
-    sellID=""
-    def __init__(self):
-        self.soup = None
-    def fetchData(self):
-        print("Geting price list ...")
-        url = 'https://bonbast.com'
-        options = webdriver.ChromeOptions()
-        options.add_argument('--headless=new')
-        options.add_argument('--disable-dev-shm-usage')
-        # options.add_argument("window-size=1024x768")
-        options.add_argument('--no-sandbox')
-        options.add_argument('--disable-gpu')
-        options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0")
-        driver = webdriver.Chrome(options=options)
-        driver.set_page_load_timeout(30)
-        driver.get(url)
-        time.sleep(5)
-        src = driver.page_source
-        self.soup = BeautifulSoup(src, 'html.parser')
-        driver.quit()
-    def iteratePrice(self, name, sellID, buyID):
-        print("Getting data for", name)
-        sellPrice = self.soup.find(id=sellID)
-        buyPrice = self.soup.find(id=buyID)
-        return buyPrice, sellPrice
-    def setPrice(id, price):
-        client.set(id, price.get_text())
+def fetchData():
+    print("Geting price list ...")
+    url = 'https://bonbast.com'
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless=new')
+    options.add_argument('--disable-dev-shm-usage')
+    # options.add_argument("window-size=1024x768")
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-gpu')
+    options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0")
+    driver = webdriver.Chrome(options=options)
+    driver.set_page_load_timeout(30)
+    driver.get(url)
+    time.sleep(5)
+    src = driver.page_source
+    soup = BeautifulSoup(src, 'html.parser')
+    driver.quit()
+    return soup
+def iteratePrice(soup, name, sellID, buyID):
+    print("Getting data for", name)
+    sellPrice = soup.find(id=sellID)
+    buyPrice = soup.find(id=buyID)
+    return buyPrice, sellPrice
+def setPrice(id, price):
+    client.set(id, price.get_text())
 
 while True:
-    Currency.fetchData()
+    soup = fetchData()
     for currency in currencies.values():
-        Currency.name = currency["name"]
-        Currency.sellID = currency["sellID"]
-        Currency.buyID = currency["buyID"]
-        print("Set price for", Currency.name,"...")
-        buyPrice, sellPrice = Currency.iteratePrice(Currency.name, Currency.sellID, Currency.buyID)
-        Currency.setPrice(Currency.buyID, buyPrice)
-        Currency.setPrice(Currency.sellID, sellPrice)
+        name = currency["name"]
+        sellID = currency["sellID"]
+        buyID = currency["buyID"]
+        print("Set price for", name,"...")
+        buyPrice, sellPrice = iteratePrice(soup, name, sellID, buyID)
+        setPrice(buyID, buyPrice)
+        setPrice(sellID, sellPrice)
     time.sleep(300)
