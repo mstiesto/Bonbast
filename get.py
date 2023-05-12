@@ -41,10 +41,10 @@ class Currency:
         src = driver.page_source
         self.soup = BeautifulSoup(src, 'html.parser')
         driver.quit()
-    def iteratePrice(self, Currency):
-        print("Getting data for", Currency)
-        sellPrice = self.soup.find(id=Currency.sellID)
-        buyPrice = self.soup.find(id=Currency.buyID)
+    def iteratePrice(self, name, sellID, buyID):
+        print("Getting data for", name)
+        sellPrice = self.soup.find(id=sellID)
+        buyPrice = self.soup.find(id=buyID)
         return buyPrice, sellPrice
     def setPrice(id, price):
         client.set(id, price.get_text())
@@ -56,7 +56,7 @@ while True:
         Currency.sellID = currency["sellID"]
         Currency.buyID = currency["buyID"]
         print("Set price for", Currency.name,"...")
-        buyPrice, sellPrice = Currency.iteratePrice(currency)
+        buyPrice, sellPrice = Currency.iteratePrice(Currency.name, Currency.sellID, Currency.buyID)
         Currency.setPrice(Currency.buyID, buyPrice)
         Currency.setPrice(Currency.sellID, sellPrice)
     time.sleep(300)
