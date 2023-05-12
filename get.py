@@ -6,6 +6,14 @@ client = base.Client(('memcached', 11211))
 
 #currencies = ["euro", "dollar"]
 
+class Currency:
+    name=""
+    buyID=""
+    sellID=""
+    def setPrice(slef, id, price):
+        client.set(id, price.get_text())
+
+
 Currencies = {
     "euro" : {
         "name" : "euro",
@@ -19,12 +27,13 @@ Currencies = {
     }
 }
 
-class Currency:
-    name=""
-    buyID=""
-    sellID=""
-    def setPrice(slef, id, price):
-        client.set(id, price.get_text())
+
+
+
+
+
+
+
 
 def fetchData():
     print("Geting price list ...")
@@ -55,9 +64,9 @@ def iteratePrice(Currency):
 
 while True:
     for currency in Currencies:
-        Currency.name = currency['name']
-        Currency.sellID = currency['sellID']
-        Currency.buyID = currency['buyID']
+        Currency.name = currency[name]
+        Currency.sellID = currency[sellID]
+        Currency.buyID = currency[buyID]
         print("Set price for", Currency.name,"...")
         buyPrice, sellPrice = iteratePrice(Currency)
         Currency.setPrice(Currency.buyID, buyPrice)
