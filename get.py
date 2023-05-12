@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from pymemcache.client import base
@@ -19,7 +20,7 @@ currencies = {
     }
 }
 def fetchData():
-    print("Geting price list ...")
+    print(datetime.now(), "Geting price list ...")
     url = 'https://bonbast.com'
     options = webdriver.ChromeOptions()
     options.add_argument('--headless=new')
@@ -37,11 +38,12 @@ def fetchData():
     driver.quit()
     return soup
 def iteratePrice(soup, name, sellID, buyID):
-    print("Getting data for", name)
+    print(datetime.now(), "Getting data for", name)
     sellPrice = soup.find(id=sellID)
     buyPrice = soup.find(id=buyID)
     return buyPrice, sellPrice
-def setPrice(id, price):
+def setPrice(name, id, price):
+    print(datetime.now(), "Setting", price.get_text(), "for", name, id, "...")
     client.set(id, price.get_text())
 
 while True:
@@ -50,8 +52,7 @@ while True:
         name = currency["name"]
         sellID = currency["sellID"]
         buyID = currency["buyID"]
-        print("Set price for", name,"...")
         buyPrice, sellPrice = iteratePrice(soup, name, sellID, buyID)
-        setPrice(buyID, buyPrice)
-        setPrice(sellID, sellPrice)
+        setPrice(name ,buyID, buyPrice)
+        setPrice(name, sellID, sellPrice)
     time.sleep(300)
