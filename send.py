@@ -28,8 +28,9 @@ def send_price(message):
         sell = client.get('usd1')
         buy = client.get('usd2')
     else:
-        BOT.reply_to(message, "Could not find the currency")    
-    BOT.reply_to(message, "buy:", buy, "sell:", sell)
+        BOT.reply_to(message, "Could not find the currency")
+    text = print("Sell:", sell, "\nBuy:", buy)
+    BOT.reply_to(message, text)
 
 
 BOT.infinity_polling()
