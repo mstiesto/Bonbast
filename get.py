@@ -22,7 +22,9 @@ class Currency:
     name=""
     buyID=""
     sellID=""
-    def fetchData():
+    def __init__(self):
+        self.soup = None
+    def fetchData(self):
         print("Geting price list ...")
         url = 'https://bonbast.com'
         options = webdriver.ChromeOptions()
@@ -37,13 +39,12 @@ class Currency:
         driver.get(url)
         time.sleep(5)
         src = driver.page_source
-        global soup
-        soup = BeautifulSoup(src, 'html.parser')
+        self.soup = BeautifulSoup(src, 'html.parser')
         driver.quit()
-    def iteratePrice(Currency):
+    def iteratePrice(self, Currency):
         print("Getting data for", Currency)
-        sellPrice = soup.find(id=Currency.sellID)
-        buyPrice = soup.find(id=Currency.buyID)
+        sellPrice = self.soup.find(id=Currency.sellID)
+        buyPrice = self.soup.find(id=Currency.buyID)
         return buyPrice, sellPrice
     def setPrice(id, price):
         client.set(id, price.get_text())
