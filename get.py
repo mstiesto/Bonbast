@@ -56,7 +56,7 @@ while True:
         Currency.sellID = currency["sellID"]
         Currency.buyID = currency["buyID"]
         print("Set price for", Currency.name,"...")
-        buyPrice, sellPrice = Currency.iteratePrice(Currency)
+        buyPrice, sellPrice = Currency.iteratePrice(currency)
         Currency.setPrice(Currency.buyID, buyPrice)
         Currency.setPrice(Currency.sellID, sellPrice)
     time.sleep(300)
