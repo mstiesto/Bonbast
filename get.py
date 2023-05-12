@@ -54,7 +54,7 @@ def iteratePrice(Currency):
 
 
 while True:
-    for currency in currencies:
+    for currency in currencies.values():
         Currency.name = currency["name"]
         Currency.sellID = currency["sellID"]
         Currency.buyID = currency["buyID"]
