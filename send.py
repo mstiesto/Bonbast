@@ -16,7 +16,7 @@ def send_price(message):
         buy = client.get('usd2')
     else:
         BOT.reply_to(message, "Could not find the currency")
-    text = "Sell: " + sell + "\n" + "Buy: " + buy
+    text = ("Sell: " + sell + "\n" + "Buy: " + buy).encode()
     BOT.reply_to(message, text)
 
 
