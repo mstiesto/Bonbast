@@ -22,6 +22,7 @@ def send_price(message):
         if message.text == "/" + currency['name']:
             sell = client.get(currency['sellID'])
             buy = client.get(currency['buyID'])
+            break
         else:
             BOT.reply_to(message, "Could not find the currency")
     text = ("Sell: " + str(sell, 'utf-8') + "\n" + "Buy: " + str(buy, 'utf-8'))
