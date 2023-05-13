@@ -17,6 +17,11 @@ currencies = {
         "name" : "dollar",
         "buyID" : "usd2",
         "sellID" : "usd1"
+    },
+    "lir" : {
+        "name" : "lir",
+        "buyID" : "try2",
+        "sellID" : "try1"
     }
 }
 def fetchData():
