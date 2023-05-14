@@ -1,0 +1,13 @@
+---
+euro:
+  name: euro
+  buyID: eur2
+  sellID: eur1
+dollar:
+  name: dollar
+  buyID: usd2
+  sellID: usd1
+lir:
+  name: lir
+  buyID: try2
+  sellID: try1
