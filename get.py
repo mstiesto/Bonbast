@@ -4,8 +4,10 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from pymemcache.client import base
 client = base.Client(('memcached', 11211))
-with open("currencies.yaml") as c:
-    currencies = yaml.load(c, Loader=yaml.FullLoader)['currencies']
+with open("objects.yaml") as c:
+    objects = yaml.load(o, Loader=yaml.FullLoader)
+    currencies = objects['currencies']
+    coins = objects['coins']
 def fetchData():
     print(datetime.now(), "Geting price list ...")
     url = 'https://bonbast.com'
