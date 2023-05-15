@@ -7,7 +7,7 @@ BOT_TOKEN = os.environ.get('BOT_TOKEN')
 BOT = telebot.TeleBot(BOT_TOKEN)
 @BOT.message_handler(commands=list(currencies.keys()))
 def send_price(message):
-    for currency, ids in currencies:
+    for currency, ids in currencies.items():
         if message.text == "/" + currency:
             sell = client.get(ids['sellID'])
             buy = client.get(ids['buyID'])
