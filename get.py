@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from pymemcache.client import base
 client = base.Client(('memcached', 11211))
-with open("objects.yaml") as c:
+with open("objects.yaml") as o:
     objects = yaml.load(o, Loader=yaml.FullLoader)
     currencies = objects['currencies']
     coins = objects['coins']
