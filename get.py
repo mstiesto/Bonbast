@@ -5,7 +5,7 @@ from selenium import webdriver
 from pymemcache.client import base
 client = base.Client(('memcached', 11211))
 with open("currencies.yaml") as c:
-    currencies = (yaml.load(c, Loader=yaml.FullLoader)).values()
+    currencies = yaml.load(c, Loader=yaml.FullLoader)['currencies']
 def fetchData():
     print(datetime.now(), "Geting price list ...")
     url = 'https://bonbast.com'
