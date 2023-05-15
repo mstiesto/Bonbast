@@ -30,7 +30,7 @@ jobs:
           port: ${{ secrets.REMOTE_PORT }}
           script: |
             cd /srv/bonbast/
+            docker pull mstiesto/bonbast:latest
             docker compose stop bonbast
             docker compose rm bonbast
-            docker pull mstiesto/bonbast:latest
-            docker compose up bonbast -d
+            docker compose up -d bonbast

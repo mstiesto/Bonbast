@@ -9,7 +9,6 @@ currencies:
   lir:
     buyID: try2
     sellID: try1
-
 coins:
   emami:
     buyID: emami2
