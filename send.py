@@ -9,13 +9,13 @@ BOT_TOKEN = os.environ.get('BOT_TOKEN')
 BOT = telebot.TeleBot(BOT_TOKEN)
 @BOT.message_handler(commands=['start'])
 def start(message):
-    BOT.reply_to(message, *objects.keys())
+    BOT.reply_to(message, list(objects))
 
-@BOT.message_handler(commands=list(objects.keys()))
+@BOT.message_handler(commands=list(objects))
 def list(message):
     for object, values in objects.items():
         if message.text == "/" + object:
-            BOT.reply_to(message, *values.keys())
+            BOT.reply_to(message, list(values))
 
 @BOT.message_handler(commands=list(currencies.keys()))
 def send_price(message):
