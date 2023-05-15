@@ -16,7 +16,7 @@ def list(message):
     for object, values in objects.items():
         if message.text == "/" + object:
             text = values.keys()
-    BOT.reply_to(message, text)
+            BOT.reply_to(message, text)
 
 @BOT.message_handler(commands=list(currencies.keys()))
 def send_price(message):
