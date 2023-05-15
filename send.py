@@ -2,7 +2,7 @@ import os, telebot, yaml
 from pymemcache.client import base
 client = base.Client(('memcached', 11211))
 with open("currencies.yaml") as c:
-    currencies = yaml.load(c.values(), Loader=yaml.FullLoader)
+    currencies = (yaml.load(c, Loader=yaml.FullLoader)).values()
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 BOT = telebot.TeleBot(BOT_TOKEN)
 @BOT.message_handler(commands=list(currencies.keys()))
