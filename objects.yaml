@@ -1,15 +1,15 @@
----
-currencies:
-  euro:
-    buyID: eur2
-    sellID: eur1
-  dollar:
-    buyID: usd2
-    sellID: usd1
-  lir:
-    buyID: try2
-    sellID: try1
-coins:
-  emami:
-    buyID: emami2
-    sellID: emami1
+  ---
+  currencies:
+    euro:
+      buyID: eur2
+      sellID: eur1
+    dollar:
+      buyID: usd2
+      sellID: usd1
+    lir:
+      buyID: try2
+      sellID: try1
+  coins:
+    emami:
+      buyID: emami2
+      sellID: emami1
