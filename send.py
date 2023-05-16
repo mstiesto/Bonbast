@@ -17,7 +17,7 @@ def start(message):
 @BOT.message_handler(commands=list(objects.keys()))
 def list(message):
     items=""
-    for object in objects.keys():
+    for object in list(objects.keys()):
         if message.text == "/" + object:
             items = items + "/" + object + "\n"
             BOT.reply_to(message, items)
