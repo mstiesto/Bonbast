@@ -21,7 +21,7 @@ def start(message):
 
 @BOT.message_handler(commands=list(objects.keys()))
 def list(message):
-    BOT.reply_to(message, message)
+    BOT.reply_to(message, "salam")
 
 
 
