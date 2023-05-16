@@ -7,6 +7,7 @@ with open("objects.yaml") as o:
     coins = objects['coins']
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 BOT = telebot.TeleBot(BOT_TOKEN)
+
 @BOT.message_handler(commands=['start'])
 def start(message):
     items = ""
@@ -14,13 +15,16 @@ def start(message):
         items = items + "/" + object + "\n"
     BOT.reply_to(message, items)
 
+
+
+
+
 @BOT.message_handler(commands=list(objects.keys()))
 def list(message):
-    items=""
-    for object in list(objects.keys()):
-        if message.text == "/" + object:
-            items = items + "/" + object + "\n"
-            BOT.reply_to(message, items)
+    BOT.reply_to(message, message)
+
+
+
 
 @BOT.message_handler(commands=list(currencies.keys()))
 def send_price(message):
