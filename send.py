@@ -9,9 +9,10 @@ BOT_TOKEN = os.environ.get('BOT_TOKEN')
 BOT = telebot.TeleBot(BOT_TOKEN)
 @BOT.message_handler(commands=['start'])
 def start(message):
-    object = list(objects.keys())
-    print(object)
-    BOT.reply_to(message, object)
+    for object in objects.keys():
+        items += object
+        print(items)
+    BOT.reply_to(message, items)
 
 # @BOT.message_handler(commands=list(objects))
 # def list(message):
