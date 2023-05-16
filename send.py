@@ -12,7 +12,6 @@ def start(message):
     items = ""
     for object in objects.keys():
         items = items + "/" + object + "\n"
-        print(items)
     BOT.reply_to(message, items)
 
 # @BOT.message_handler(commands=list(objects))
@@ -21,13 +20,13 @@ def start(message):
 #         if message.text == "/" + object:
 #             BOT.reply_to(message, list(values))
 
-# @BOT.message_handler(commands=list(currencies.keys()))
-# def send_price(message):
-#     for currency, ids in currencies.items():
-#         if message.text == "/" + currency:
-#             sell = client.get(ids['sellID'])
-#             buy = client.get(ids['buyID'])
-#             text = ("Sell: " + str(sell, 'utf-8') + "\n" + "Buy: " + str(buy, 'utf-8'))
-#             break
-#     BOT.reply_to(message, text)
+@BOT.message_handler(commands=list(currencies.keys()))
+def send_price(message):
+    for currency, ids in currencies.items():
+        if message.text == "/" + currency:
+            sell = client.get(ids['sellID'])
+            buy = client.get(ids['buyID'])
+            text = ("Sell: " + str(sell, 'utf-8') + "\n" + "Buy: " + str(buy, 'utf-8'))
+            break
+    BOT.reply_to(message, text)
 BOT.infinity_polling()
