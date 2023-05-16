@@ -16,13 +16,13 @@ def start(message):
 @BOT.message_handler(commands=list(objects.keys()))
 def list(message):
     BOT.reply_to(message, "salam")
-@BOT.message_handler(commands=list(currencies.keys()))
-def send_price(message):
-    for currency, ids in currencies.items():
-        if message.text == "/" + currency:
-            sell = client.get(ids['sellID'])
-            buy = client.get(ids['buyID'])
-            text = ("Sell: " + str(sell, 'utf-8') + "\n" + "Buy: " + str(buy, 'utf-8'))
-            break
-    BOT.reply_to(message, text)
+# @BOT.message_handler(commands=list(currencies.keys()))
+# def send_price(message):
+#     for currency, ids in currencies.items():
+#         if message.text == "/" + currency:
+#             sell = client.get(ids['sellID'])
+#             buy = client.get(ids['buyID'])
+#             text = ("Sell: " + str(sell, 'utf-8') + "\n" + "Buy: " + str(buy, 'utf-8'))
+#             break
+#     BOT.reply_to(message, text)
 BOT.infinity_polling()
