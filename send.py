@@ -10,6 +10,7 @@ BOT = telebot.TeleBot(BOT_TOKEN)
 @BOT.message_handler(commands=['start'])
 def start(message):
     object = list(objects.keys())
+    print(object)
     BOT.reply_to(message, object)
 
 # @BOT.message_handler(commands=list(objects))
