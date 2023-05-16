@@ -17,9 +17,9 @@ def start(message):
 @BOT.message_handler(commands=list(objects.keys()))
 def list(message):
     items=""
-    for object, values in objects:
+    for object in objects.keys():
         if message.text == "/" + object:
-            items = items + "/" + values.keys() + "\n"
+            items = items + "/" + object + "\n"
             BOT.reply_to(message, items)
 
 @BOT.message_handler(commands=list(currencies.keys()))
