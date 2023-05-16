@@ -9,21 +9,21 @@ BOT_TOKEN = os.environ.get('BOT_TOKEN')
 BOT = telebot.TeleBot(BOT_TOKEN)
 @BOT.message_handler(commands=['start'])
 def start(message):
-    BOT.reply_to(message, list(objects))
+    BOT.reply_to(message, *objects.keys())
 
-@BOT.message_handler(commands=list(objects))
-def list(message):
-    for object, values in objects.items():
-        if message.text == "/" + object:
-            BOT.reply_to(message, list(values))
+# @BOT.message_handler(commands=list(objects))
+# def list(message):
+#     for object, values in objects.items():
+#         if message.text == "/" + object:
+#             BOT.reply_to(message, list(values))
 
-@BOT.message_handler(commands=list(currencies))
-def send_price(message):
-    for currency, ids in currencies.items():
-        if message.text == "/" + currency:
-            sell = client.get(ids['sellID'])
-            buy = client.get(ids['buyID'])
-            text = ("Sell: " + str(sell, 'utf-8') + "\n" + "Buy: " + str(buy, 'utf-8'))
-            break
-    BOT.reply_to(message, text)
+# @BOT.message_handler(commands=list(currencies.keys()))
+# def send_price(message):
+#     for currency, ids in currencies.items():
+#         if message.text == "/" + currency:
+#             sell = client.get(ids['sellID'])
+#             buy = client.get(ids['buyID'])
+#             text = ("Sell: " + str(sell, 'utf-8') + "\n" + "Buy: " + str(buy, 'utf-8'))
+#             break
+#     BOT.reply_to(message, text)
 BOT.infinity_polling()
