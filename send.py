@@ -11,7 +11,7 @@ BOT = telebot.TeleBot(BOT_TOKEN)
 def start(message):
     items = ""
     for object in objects.keys():
-        items = items + object
+        items = "/" + items + "\n" + "/" + object
         print(items)
     BOT.reply_to(message, items)
 
