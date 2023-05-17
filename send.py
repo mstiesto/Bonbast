@@ -27,6 +27,7 @@ def list(message):
     items = ""
     for k, v in objects:
         if message.text == "/" + k:
-            items = items + "/" + v.keys() + "\n"
+            for object in v.keys():
+                items = items + "/" + object + "\n"
     BOT.reply_to(message, items)
 BOT.infinity_polling()
