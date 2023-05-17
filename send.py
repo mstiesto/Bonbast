@@ -13,8 +13,10 @@ def start(message):
     for object in objects.keys():
         items = items + "/" + object + "\n"
     BOT.reply_to(message, items)
-# @BOT.message_handler(commands=['currencies', 'coins'])
-# def list(message):
+@BOT.message_handler(commands=['currencies', 'coins'])
+def list(message):
+    if message.text == "currencies":
+        BOT.reply_to(message, "salam")
 #     items = ""
 #     for k, v in objects:
 #         if message.text == k:
