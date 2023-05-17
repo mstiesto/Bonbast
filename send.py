@@ -25,7 +25,7 @@ def send_price(message):
 @BOT.message_handler(commands=list(objects.keys()))
 def list(message):
     items = ""
-    for k, v in objects:
+    for k, v in objects.items():
         if message.text == "/" + k:
             print(k)
             for object in v.keys():
