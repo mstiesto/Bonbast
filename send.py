@@ -13,10 +13,14 @@ def start(message):
     for object in objects.keys():
         items = items + "/" + object + "\n"
     BOT.reply_to(message, items)
-@BOT.message_handler(commands=list(objects.keys()))
-def list(message):
-    BOT.reply_to(message, "salam")
 @BOT.message_handler(commands=['currencies', 'coins'])
+def list(message):
+    items = ""
+    for k, v in objects:
+        if message.text == k:
+            items = items + "/" + v.keys() + "\n"
+    BOT.reply_to(message, items)
+@BOT.message_handler(commands=list(objects['currencies'].keys()))
 def send_price(message):
     for currency, ids in currencies.items():
         if message.text == "/" + currency:
