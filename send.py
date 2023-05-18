@@ -30,11 +30,12 @@ def list(message):
 
 @BOT.message_handler(commands=currenciesList)
 def send_price(message):
-    for currency, ids in objects['currencies'].items():
-        if message.text == "/" + currency:
-            sell = client.get(ids['sellID'])
-            buy = client.get(ids['buyID'])
-            text = ("Sell: " + str(sell, 'utf-8') + "\n" + "Buy: " + str(buy, 'utf-8'))
-            break
+    for object in objects.items():
+        for k, v in object:
+            if message.text == "/" + k:
+                sell = client.get(v['sellID'])
+                buy = client.get(v['buyID'])
+                text = ("Sell: " + str(sell, 'utf-8') + "\n" + "Buy: " + str(buy, 'utf-8'))
+                break
     BOT.reply_to(message, text)
 BOT.infinity_polling()
