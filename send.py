@@ -30,7 +30,7 @@ def list(message):
 
 @BOT.message_handler(commands=currenciesList)
 def send_price(message):
-    for object in objects.items():
+    for object in objects.values():
         for k, v in object:
             if message.text == "/" + k:
                 sell = client.get(v['sellID'])
