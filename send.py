@@ -25,7 +25,6 @@ def list(message):
             print(k)
             for object in v.keys():
                 item = item + "/" + object + "\n"
-                break
     print(item)
     BOT.reply_to(message, item)
 
