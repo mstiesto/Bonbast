@@ -3,8 +3,10 @@ from pymemcache.client import base
 client = base.Client(('memcached', 11211))
 with open("objects.yaml") as o:
     objects = yaml.load(o, Loader=yaml.FullLoader)
-    # currencies = objects['currencies']
-    # coins = objects['coins']
+    objectsList = list(objects.keys())
+    currencies = objects['currencies']
+    currenciesList = list(currencies.keys())
+    coins = objects['coins']
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 BOT = telebot.TeleBot(BOT_TOKEN)
 
@@ -15,20 +17,19 @@ def start(message):
         items = items + "/" + object + "\n"
     BOT.reply_to(message, items)
 
-
-@BOT.message_handler(commands=list(objects.keys()))
+@BOT.message_handler(commands=objectsList)
 def list(message):
-    items = ""
+    item = ""
     for k, v in objects.items():
         if message.text == "/" + k:
             print(k)
             for object in v.keys():
-                items = items + "/" + object + "\n"
-    print(items)
-    BOT.reply_to(message, items)
+                item = item + "/" + object + "\n"
+                break
+    print(item)
+    BOT.reply_to(message, item)
 
-
-@BOT.message_handler(commands=list(objects['currencies'].keys()))
+@BOT.message_handler(commands=currenciesList)
 def send_price(message):
     for currency, ids in objects['currencies'].items():
         if message.text == "/" + currency:
