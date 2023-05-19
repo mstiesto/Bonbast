@@ -41,4 +41,4 @@ while True:
             buyPrice, sellPrice = parseData(soup, name, sellID, buyID)
             setPrice(name ,buyID, buyPrice)
             setPrice(name, sellID, sellPrice)
-        time.sleep(1800)
+    time.sleep(1800)
