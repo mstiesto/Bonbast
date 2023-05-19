@@ -13,7 +13,7 @@ BOT = telebot.TeleBot(BOT_TOKEN)
 
 @BOT.message_handler(commands=['start'])
 def start(message):
-    print(datetime.now() , "---", message.from_user.first_name, "---", message.text)
+    print(datetime.now() , "---", message.from_user.username, "---", message.text)
     items = ""
     for object in objects.keys():
         items = items + "/" + object + "\n"
@@ -24,7 +24,7 @@ def list(message):
     item = ""
     for k, v in objects.items():
         if message.text == "/" + k:
-            print(datetime.now() , "---", message.from_user.first_name, "---", message.text)
+            print(datetime.now() , "---", message.from_user.username, "---", message.text)
             for object in v.keys():
                 item = item + "/" + object + "\n"
     BOT.reply_to(message, item)
@@ -35,7 +35,7 @@ def send_price(message):
     for object in objects.values():
         for k, v in object.items():
             if message.text == "/" + k:
-                print(datetime.now() , "---", message.from_user.first_name, "---", message.text)
+                print(datetime.now() , "---", message.from_user.username, "---", message.text)
                 sell = client.get(v['sellID'])
                 buy = client.get(v['buyID'])
                 text = ("Sell: " + str(sell, 'utf-8') + "\n" + "Buy: " + str(buy, 'utf-8'))
