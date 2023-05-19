@@ -21,10 +21,10 @@ def start(message):
 def list(message):
     item = ""
     for k, v in objects.items():
-        if message.text == k + "/":
+        if message.text == "/" + k:
             print(k)
             for object in v.keys():
-                item = item + object + "/" + "\n"
+                item = item + "/" + object + "\n"
     print(item)
     BOT.reply_to(message, item)
 
@@ -33,10 +33,10 @@ def list(message):
 def send_price(message):
     for object in objects.values():
         for k, v in object.items():
-            if message.text == k + "/":
+            if message.text == "/" + k:
                 sell = client.get(v['sellID'])
                 buy = client.get(v['buyID'])
-                text = ("فروش: " + str(sell, 'utf-8') + "\n" + "خرید: " + str(buy, 'utf-8'))
+                text = ("Sell: " + str(sell, 'utf-8') + "\n" + "Buy: " + str(buy, 'utf-8'))
                 break
     BOT.reply_to(message, text)
 BOT.infinity_polling()
