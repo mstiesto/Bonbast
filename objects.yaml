@@ -12,6 +12,10 @@ Arz:
   Lir:
     buyID: try2
     sellID: try1
+Tala:
+  Gram:
+    buyID: gol18
+    sellID: gol18
 Sekke:
   Emami:
     buyID: emami12
@@ -30,5 +34,5 @@ Sekke:
     sellID: azadi1g
 Crypto:
   Bitcoin:
-    sellID: "bitcoin"
-    buyID: "bitcoin"
+    sellID: bitcoin
+    buyID: bitcoin
