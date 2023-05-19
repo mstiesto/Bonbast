@@ -31,4 +31,4 @@ Sekke:
 Crypto:
   Bitcoin:
     sellID: "bitcoin"
-    buyID: ""
+    buyID: "bitcoin"
