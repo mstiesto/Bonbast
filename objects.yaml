@@ -30,5 +30,5 @@ Sekke:
     sellID: azadi1g
 Crypto:
   Bitcoin:
-    sellID: bitcoin
-    buyID: None
+    sellID: "bitcoin"
+    buyID: ""
