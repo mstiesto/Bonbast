@@ -7,7 +7,7 @@ client = base.Client(('memcached', 11211))
 with open("objects.yaml") as o:
     objects = yaml.load(o, Loader=yaml.FullLoader)
 def fetchData():
-    print(datetime.now(), "Geting price list ...")
+    print(datetime.now(), "---", "Geting price list ...")
     url = 'https://bonbast.com'
     options = webdriver.ChromeOptions()
     options.add_argument('--headless=new')
@@ -24,12 +24,12 @@ def fetchData():
     driver.quit()
     return soup
 def parseData(soup, name, sellID, buyID):
-    print(datetime.now(), "Parsing data for", name, "...")
+    print(datetime.now(), "---", "Parsing data for", name, "...")
     sellPrice = soup.find(id=sellID)
     buyPrice = soup.find(id=buyID)
     return buyPrice, sellPrice
 def setPrice(name, id, price):
-    print(datetime.now(), "Setting", price.get_text(), "for", name, id, "...")
+    print(datetime.now(), "---", "Setting", price.get_text(), "for", name, id, "...")
     client.set(id, price.get_text())
 while True:
     soup = fetchData()

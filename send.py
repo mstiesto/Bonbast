@@ -1,4 +1,5 @@
 import os, telebot, yaml
+from datetime import datetime
 from pymemcache.client import base
 client = base.Client(('memcached', 11211))
 with open("objects.yaml") as o:
@@ -22,7 +23,7 @@ def list(message):
     item = ""
     for k, v in objects.items():
         if message.text == "/" + k:
-            print(k)
+            print(datetime.now() , "---" message.from_user.first_name, "---", message.text)
             for object in v.keys():
                 item = item + "/" + object + "\n"
     print(item)
