@@ -6,8 +6,6 @@ from pymemcache.client import base
 client = base.Client(('memcached', 11211))
 with open("objects.yaml") as o:
     objects = yaml.load(o, Loader=yaml.FullLoader)
-    currencies = objects['currencies']
-    coins = objects['coins']
 def fetchData():
     print(datetime.now(), "Geting price list ...")
     url = 'https://bonbast.com'
@@ -35,11 +33,12 @@ def setPrice(name, id, price):
     client.set(id, price.get_text())
 while True:
     soup = fetchData()
-    for currency, ids in currencies.items():
-        name = currency
-        sellID = ids["sellID"]
-        buyID = ids["buyID"]
-        buyPrice, sellPrice = parseData(soup, name, sellID, buyID)
-        setPrice(name ,buyID, buyPrice)
-        setPrice(name, sellID, sellPrice)
-    time.sleep(1800)
+    for object, values in objects.items():
+        for currency, ids in values.items():
+            name = currency
+            sellID = ids["sellID"]
+            buyID = ids["buyID"]
+            buyPrice, sellPrice = parseData(soup, name, sellID, buyID)
+            setPrice(name ,buyID, buyPrice)
+            setPrice(name, sellID, sellPrice)
+        time.sleep(1800)
