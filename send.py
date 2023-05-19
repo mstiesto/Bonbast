@@ -23,7 +23,7 @@ def list(message):
     item = ""
     for k, v in objects.items():
         if message.text == "/" + k:
-            print(datetime.now() , "---" message.from_user.first_name, "---", message.text)
+            print(datetime.now() , "---", message.from_user.first_name, "---", message.text)
             for object in v.keys():
                 item = item + "/" + object + "\n"
     print(item)
@@ -35,6 +35,7 @@ def send_price(message):
     for object in objects.values():
         for k, v in object.items():
             if message.text == "/" + k:
+                print(datetime.now() , "---", message.from_user.first_name, "---", message.text)
                 sell = client.get(v['sellID'])
                 buy = client.get(v['buyID'])
                 text = ("Sell: " + str(sell, 'utf-8') + "\n" + "Buy: " + str(buy, 'utf-8'))
