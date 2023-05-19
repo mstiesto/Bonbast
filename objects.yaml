@@ -1,15 +1,18 @@
 ---
-currencies:
-  euro:
+ارز:
+  یورو:
     buyID: eur2
     sellID: eur1
-  dollar:
+  دلار:
     buyID: usd2
     sellID: usd1
-  lir:
+  لیر:
     buyID: try2
     sellID: try1
-coins:
-  emami:
+سکه:
+  امامی:
     buyID: emami12
     sellID: emami1
+  آزادی:
+    buyID: azadi12
+    sellID: azadi1

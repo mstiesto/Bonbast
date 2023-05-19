@@ -7,7 +7,6 @@ with open("objects.yaml") as o:
     itemList = []
 for item in objects.values():
     itemList = itemList + list(item.keys())
-print(itemList)
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 BOT = telebot.TeleBot(BOT_TOKEN)
 
