@@ -33,7 +33,7 @@ def setPrice(name, id, price):
     client.set(id, price.get_text())
 while True:
     soup = fetchData()
-    for object, values in objects.values():
+    for values in objects.values():
         for currency, ids in values.items():
             name = currency
             sellID = ids["sellID"]
