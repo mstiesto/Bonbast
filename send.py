@@ -13,6 +13,7 @@ BOT = telebot.TeleBot(BOT_TOKEN)
 
 @BOT.message_handler(commands=['start'])
 def start(message):
+    print(datetime.now() , "---", message.from_user.first_name, "---", message.text)
     items = ""
     for object in objects.keys():
         items = items + "/" + object + "\n"
@@ -26,7 +27,6 @@ def list(message):
             print(datetime.now() , "---", message.from_user.first_name, "---", message.text)
             for object in v.keys():
                 item = item + "/" + object + "\n"
-    print(item)
     BOT.reply_to(message, item)
 
 
