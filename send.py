@@ -4,9 +4,10 @@ client = base.Client(('memcached', 11211))
 with open("objects.yaml") as o:
     objects = yaml.load(o, Loader=yaml.FullLoader)
     objectsList = list(objects.keys())
-    currencies = objects['currencies']
-    currenciesList = list(currencies.keys())
-    coins = objects['coins']
+    itemList = []
+for item in objects.values():
+    itemList = itemList + list(item.keys())
+print(itemList)
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 BOT = telebot.TeleBot(BOT_TOKEN)
 
@@ -28,7 +29,8 @@ def list(message):
     print(item)
     BOT.reply_to(message, item)
 
-@BOT.message_handler(commands=currenciesList)
+
+@BOT.message_handler(commands=itemList)
 def send_price(message):
     for object in objects.values():
         for k, v in object.items():
