@@ -28,3 +28,6 @@ Sekke:
   Gerami:
     buyID: azadi1g2
     sellID: azadi1g
+Crypto:
+  Bitcoin:
+    sellID: bitcoin
