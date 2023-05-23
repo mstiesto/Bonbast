@@ -1,0 +1,38 @@
+---
+Arz:
+  Euro:
+    buyID: eur2
+    sellID: eur1
+  Dollar:
+    buyID: usd2
+    sellID: usd1
+  Pound:
+    buyID: gbp2
+    sellID: gbp1
+  Lir:
+    buyID: try2
+    sellID: try1
+Tala:
+  Gram:
+    buyID: gol18
+    sellID: gol18
+Sekke:
+  Emami:
+    buyID: emami12
+    sellID: emami1
+  Azadi:
+    buyID: azadi12
+    sellID: azadi1
+  Nim:
+    buyID: azadi1_22
+    sellID: azadi1_2
+  Rob:
+    buyID: azadi1_42
+    sellID: azadi1_4
+  Gerami:
+    buyID: azadi1g2
+    sellID: azadi1g
+Crypto:
+  Bitcoin:
+    sellID: bitcoin
+    buyID: bitcoin

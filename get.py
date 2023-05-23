@@ -4,10 +4,10 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from pymemcache.client import base
 client = base.Client(('memcached', 11211))
-with open("currencies.yaml") as c:
-    currencies = yaml.load(c, Loader=yaml.FullLoader)
+with open("objects.yaml") as o:
+    objects = yaml.load(o, Loader=yaml.FullLoader)
 def fetchData():
-    print(datetime.now(), "Geting price list ...")
+    print(datetime.now(), "---", "Geting price list ...")
     url = 'https://bonbast.com'
     options = webdriver.ChromeOptions()
     options.add_argument('--headless=new')
@@ -24,20 +24,21 @@ def fetchData():
     driver.quit()
     return soup
 def parseData(soup, name, sellID, buyID):
-    print(datetime.now(), "Parsing data for", name, "...")
+    print(datetime.now(), "---", "Parsing data for", name, "...")
     sellPrice = soup.find(id=sellID)
     buyPrice = soup.find(id=buyID)
     return buyPrice, sellPrice
 def setPrice(name, id, price):
-    print(datetime.now(), "Setting", price.get_text(), "for", name, id, "...")
+    print(datetime.now(), "---", "Setting", price.get_text(), "for", name, id, "...")
     client.set(id, price.get_text())
 while True:
     soup = fetchData()
-    for currency in currencies.values():
-        name = currency["name"]
-        sellID = currency["sellID"]
-        buyID = currency["buyID"]
-        buyPrice, sellPrice = parseData(soup, name, sellID, buyID)
-        setPrice(name ,buyID, buyPrice)
-        setPrice(name, sellID, sellPrice)
+    for values in objects.values():
+        for currency, ids in values.items():
+            name = currency
+            sellID = ids["sellID"]
+            buyID = ids["buyID"]
+            buyPrice, sellPrice = parseData(soup, name, sellID, buyID)
+            setPrice(name ,buyID, buyPrice)
+            setPrice(name, sellID, sellPrice)
     time.sleep(1800)
