@@ -17,7 +17,11 @@ def fetchData():
     options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0")
     driver = webdriver.Chrome(options=options)
     driver.set_page_load_timeout(30)
-    driver.get(url)
+    try:
+        driver.get(url)
+    except:
+        print("Something went wrong, trying again ...")
+        driver.get(url)
     time.sleep(5)
     src = driver.page_source
     soup = BeautifulSoup(src, 'html.parser')
