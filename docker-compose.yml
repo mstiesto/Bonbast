@@ -3,5 +3,18 @@ services:
   bonbast:
     image: mstiesto/bonbast:latest
     restart: always
-    pull_policy: always
     container_name: bonbast
+    deploy:
+        resources:
+            limits:
+              cpus: '0.50'
+              memory: 500M
+  memcached:
+    image: memcached:latest
+    restart: always
+    container_name: memcached
+    deploy:
+        resources:
+            limits:
+              cpus: '0.50'
+              memory: 500M
