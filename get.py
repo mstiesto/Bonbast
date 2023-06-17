@@ -7,7 +7,6 @@ client = base.Client(('memcached', 11211))
 with open("objects.yaml") as o:
     objects = yaml.load(o, Loader=yaml.FullLoader)
 def fetchData():
-    print(datetime.now(), "---", "Geting price list ...")
     url = 'https://bonbast.com'
     options = webdriver.ChromeOptions()
     options.add_argument('--headless=new')
@@ -18,6 +17,7 @@ def fetchData():
     driver = webdriver.Chrome(options=options)
     driver.set_page_load_timeout(30)
     try:
+        print(datetime.now(), "---", "Geting price list ...")
         driver.get(url)
     except:
         print("Something went wrong, trying again ...")
