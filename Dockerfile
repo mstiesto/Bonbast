@@ -1,4 +1,5 @@
 FROM registry.fedoraproject.org/f31/python3
+USER root
 ARG BOT_TOKEN
 ENV BOT_TOKEN=$BOT_TOKEN
 ENV PYTHONDONTWRITEBYTECODE=1
