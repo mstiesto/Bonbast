@@ -6,7 +6,7 @@ array=()
 # Use a while loop to read each line of the string
 while IFS= read -r line; do
 array+=("$line")  # Append each line to the array
-done <<< "$(params.CHANGED_FOLDERS)"
+done <<< "$CHANGED_FOLDERS"
 
 for folder in "${array[@]}"; do
   echo "Processing folder: $folder"
