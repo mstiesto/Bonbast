@@ -1,6 +1,5 @@
 #!/bin/sh
-mapfile -t CHANGES < <(echo $CHANGED_FOLDERS)
-for FOLDER in "$CHANGES"
+for FOLDER in "$CHANGED_FOLDERS"
 do
   echo "Processing folder: $FOLDER"
 done
