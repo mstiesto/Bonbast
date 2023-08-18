@@ -1,5 +1,6 @@
 #!/bin/sh
-for FOLDER in "${CHANGED_FOLDERS[@]}"
+CHANGES=$CHANGED_FOLDERS
+for FOLDER in "$CHANGES"
 do
   echo "Processing folder: $FOLDER"
 done
