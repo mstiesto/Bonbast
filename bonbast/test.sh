@@ -1,5 +1,5 @@
 #!/bin/sh
-IFS=' ' read -ra CHANGES <<< "$CHANGED_FOLDERS"
+IFS=' ' read -r -a CHANGES < <(echo "$CHANGED_FOLDERS")
 for FOLDER in "$CHANGES"
 do
   echo "Processing folder: $FOLDER"
